@@ -50,20 +50,7 @@ fun QuestionGame(modifier: Modifier = Modifier) {
     ) {
 
         if (isQuizFinished) {
-            Box(
-                modifier = Modifier
-                    .size(200.dp)
-                    .clip(RoundedCornerShape(percent = 50))
-                    .background(Color.Blue),
-                contentAlignment = Alignment.Center,
-
-                ) {
-                Text(
-                    text = scoreState.toString(),
-                    textAlign = TextAlign.Center,
-                    color = Color.White
-                )
-            }
+            Result(scoreState = scoreState.toString())
         }
 
         if (!isQuizFinished && currentQuestion != null) {
@@ -100,14 +87,13 @@ fun QuestionGame(modifier: Modifier = Modifier) {
                 if (isCorrectAnswer && currentIndexState < questions.size) {
                     Option(
                         text = stringResource(R.string.next_question),
-                        Modifier.fillMaxWidth(),
-                        {
-                            userInputState = null
-                            scoreState += 1
-                            currentIndexState += 1
+                        Modifier.fillMaxWidth()
+                    ) {
+                        userInputState = null
+                        scoreState += 1
+                        currentIndexState += 1
 
-                        }
-                    )
+                    }
                 }
             }
         }

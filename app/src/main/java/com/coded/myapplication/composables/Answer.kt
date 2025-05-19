@@ -21,11 +21,17 @@ fun Answer(
     text: String,
     isCorrect: Boolean
 ) {
+
+    val backgroundColor = when (isCorrect) {
+        true -> Color.Blue
+        else -> Color.Red
+    }
+
     Box(
         modifier = Modifier
             .size(200.dp)
             .clip(RoundedCornerShape(percent = 50))
-            .background(Color.Blue),
+            .background(backgroundColor),
         contentAlignment = Alignment.Center
     ) {
         Text(
