@@ -2,6 +2,7 @@ package com.coded.myapplication
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
@@ -19,15 +20,21 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.coded.myapplication.composables.QuestionGame
 import com.coded.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,82 +47,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
 
-                    Column(
-                        verticalArrangement = Arrangement.SpaceBetween,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(innerPadding)
-                            .fillMaxSize()
-                    ) {
-
-                        Question(
-                            text = "Android is an operating system", modifier = Modifier
-                                .padding(innerPadding)
-                                .fillMaxSize()
-                        )
-                        Answer(
-                            text = "Correct answer",
-                            isCorrect = true
-                        )
-
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceAround,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Option(text = "True", Modifier.width(200.dp))
-                            Option(text = "False", Modifier.width(200.dp))
-                        }
-                    }
+                    QuestionGame(Modifier.padding(innerPadding))
                 }
             }
         }
-    }
-
-}
-
-@Composable
-fun Question(
-    text: String,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = text,
-        fontSize = 30.sp,
-    )
-
-}
-
-@Composable
-fun Answer(
-    text: String,
-    isCorrect: Boolean
-) {
-
-    Box(
-        modifier = Modifier
-            .size(200.dp)
-            .clip(RoundedCornerShape(percent = 50))
-            .background(if (isCorrect) Color.Green else Color.Red),
-        contentAlignment = Alignment.Center,
-
-    ) {
-        Text(
-            text = text,
-            textAlign = TextAlign.Center
-
-        )
-    }
-}
-
-
-@Composable
-fun Option(text: String, modifier: Modifier = Modifier) {
-    Button(
-        onClick = {},
-        modifier = modifier
-    ) {
-        Text(
-            text = text,
-        )
     }
 }
