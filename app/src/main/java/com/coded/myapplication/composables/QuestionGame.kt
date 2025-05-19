@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -28,10 +29,10 @@ import com.coded.myapplication.R
 
 @Composable
 fun QuestionGame(modifier: Modifier = Modifier) {
-    val questions = listOf(
-        Pair("Android is an operating system.", true),
-        Pair("Kotlin is officially supported for android development", true)
-    )
+    val questions = stringArrayResource(R.array.questions).map {
+        val parts = it.split("|")
+        Pair(parts.first(), parts.last().toBoolean())
+    }
 
     var userInputState by remember { mutableStateOf<Boolean?>(null) }
     var currentIndexState by remember { mutableIntStateOf(0) }

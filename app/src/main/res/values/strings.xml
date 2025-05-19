@@ -3,4 +3,9 @@
     <string name="correct_answer">Correct answer</string>
     <string name="incorrect_answer">Incorrect answer</string>
     <string name="next_question">Next Question</string>
+
+    <string-array name="questions">
+        <item>Android is an operating system.|true</item>
+        <item>Kotlin is officially supported for Android development|true</item>
+    </string-array>
 </resources>
